@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Gorillas — Amazing Apes</title>
+  <meta name="description" content="A small educational HTML project about gorillas: species, habitat, behavior, threats, and conservation.">
+  <style>
+    :root{--accent:#2f6f44;--muted:#6b7280;--bg:#f7faf7;--card:#ffffff}
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:var(--bg); color:#0f172a; line-height:1.45}
+    header{background:linear-gradient(90deg,var(--accent),#2b5a3f); color:#fff; padding:48px 20px; text-align:center}
+    header h1{margin:0 0 8px;font-size:clamp(1.6rem,3vw,2.4rem)}
+    header p{margin:0;opacity:.95}
+    main{max-width:1000px;margin:28px auto;padding:0 18px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+    .card{background:var(--card);border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(8,15,10,.06)}
+    .card h2{margin:0 0 8px}
+    .muted{color:var(--muted);font-size:.95rem}
+    .large{font-size:1.05rem}
+    .gallery{display:flex;gap:8px;flex-wrap:wrap}
+    .gallery img{width:48%;border-radius:8px;object-fit:cover;height:160px}
+    footer{max-width:1000px;margin:28px auto 60px;padding:12px 18px;color:var(--muted);font-size:.9rem}
+    .quiz{display:flex;flex-direction:column;gap:12px}
+    .btn{background:var(--accent);color:white;padding:10px 14px;border-radius:8px;border:0;cursor:pointer}
+    .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(47,111,68,.12)}
+    @media(min-width:720px){.gallery img{width:32%}}
+    /* small accessibility helpers */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Gorillas — Amazing Apes</h1>
+    <p class="muted">Explore species, habitat, behavior, threats, and what people are doing to help gorillas survive.</p>
+  </header>
+
+  <main>
+    <section class="grid">
+      <article class="card">
+        <h2>Quick Facts</h2>
+        <p class="muted large">Gorillas are the largest living primates, mostly herbivorous, and live in family groups led by a silverback. There are two species (eastern and western) and several subspecies such as mountain gorillas and western lowland gorillas.</p>
+        <ul class="muted">
+          <li>Scientific family: <strong>Hominidae</strong></li>
+          <li>Diet: Primarily leaves, stems, fruit, and occasionally insects</li>
+          <li>Social: Live in troops led by a dominant male (silverback)</li>
+          <li>Lifespan: ~35–50 years in the wild</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Where they live</h2>
+        <p class="muted">Gorillas inhabit tropical and subtropical forests across central Africa. Mountain gorillas live at high elevations in the Virunga Mountains and Bwindi forest; western species live in lowland and swamp forests.</p>
+      </article>
+
+      <article class="card">
+        <h2>Threats &amp; Conservation</h2>
+        <p class="muted">Major threats include habitat loss, poaching, disease, and conflict. Conservation efforts combine protected areas, anti-poaching patrols, veterinary care, community programs, and ecotourism that supports local economies.</p>
+        <p><strong>How you can help:</strong></p>
+        <ol class="muted">
+          <li>Support reputable conservation orgs</li>
+          <li>Reduce demand for illegal wildlife products</li>
+          <li>Learn and share accurate information</li>
+        </ol>
+      </article>
+
+    </section>
+
+    <section style="margin-top:20px" class="card">
+      <h2>Quick Interactive Quiz</h2>
+      <div class="quiz" id="quiz">
+        <div>
+          <label for="q1" class="muted">1) Which species includes the mountain gorilla?</label>
+          <select id="q1" aria-label="Question 1">
+            <option value="">Choose...</option>
+            <option value="a">Western gorilla</option>
+            <option value="b">Eastern gorilla</option>
+            <option value="c">Sumatran gorilla</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="muted">2) True or False: Gorillas are primarily carnivores.</label>
+          <div>
+            <label><input type="radio" name="q2" value="true"> True</label>
+            <label style="margin-left:12px"><input type="radio" name="q2" value="false"> False</label>
+          </div>
+        </div>
+
+        <div>
+          <button class="btn" id="check">Check answers</button>
+          <button class="btn ghost" id="showAnswers">Show answers</button>
+        </div>
+
+        <p id="result" class="muted" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section style="margin-top:20px" class="card">
+      <h2>Soures</h2>
+      <p class="muted">National geographic, WWF, Smithsonian</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div style="max-width:1000px;margin:0 auto;padding:0 18px">Made for project in coding class</div>
+  </footer>
+
+  <script>
+    // Quiz logic
+    document.getElementById('check').addEventListener('click', ()=>{
+      const a = document.getElementById('q1').value;
+      const b = document.querySelector('input[name="q2"]:checked');
+      let score = 0, total = 2;
+      if(a==='b') score++;
+      if(b && b.value==='false') score++;
+      document.getElementById('result').textContent = `You scored ${score} out of ${total}.`;
+    });
+    document.getElementById('showAnswers').addEventListener('click', ()=>{
+      alert('Answers:\n1) Eastern gorilla\n2) False — gorillas are primarily herbivores.');
+    });
+
+    // Small enhancement: keyboard navigation for gallery images
+    document.getElementById('gallery').addEventListener('click', e=>{
+      if(e.target.tagName === 'IMG'){
+        const src = e.target.getAttribute('src');
+        if(src && !src.startsWith('data:')){
+          const w = window.open('', '_blank');
+          w.document.write(`<img src="${src}" style="max-width:98vw;max-height:98vh;display:block;margin:10px auto">`);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
