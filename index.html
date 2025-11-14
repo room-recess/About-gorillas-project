@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Gorillas — Amazing Apes</title>
+  <meta name="description" content="A polished educational page about gorillas: species, habitat, behavior, threats, and conservation.">
+  <style>
+    :root{
+      --accent:#2f6f44;
+      --accent-dark:#244b33;
+      --muted:#6b7280;
+      --bg:#f4f8f4;
+      --card:#ffffff;
+      --radius:14px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;
+      background:var(--bg);
+      color:#0f172a;
+      line-height:1.55;
+    }
+    header{
+      background:linear-gradient(120deg,var(--accent),var(--accent-dark));
+      color:#fff;
+      padding:56px 20px;
+      text-align:center;
+    }
+    header h1{font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:10px}
+    header p{opacity:.95;max-width:680px;margin:0 auto;font-size:1.05rem}
+
+    main{max-width:1080px;margin:36px auto;padding:0 20px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:20px 22px;
+      box-shadow:0 6px 18px rgba(8,15,10,.07);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover{
+      transform:translateY(-3px);
+      box-shadow:0 10px 22px rgba(8,15,10,.1);
+    }
+
+    h2{font-size:1.3rem;margin-bottom:10px}
+    .muted{color:var(--muted)}
+    .large{font-size:1.05rem}
+
+    .gallery{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .gallery img{
+      width:32%;
+      border-radius:10px;
+      object-fit:cover;
+      height:170px;
+      cursor:pointer;
+      transition:opacity .2s;
+    }
+    .gallery img:hover{opacity:.85}
+
+    footer{
+      max-width:1080px;
+      margin:40px auto 80px;
+      padding:0 20px;
+      font-size:.9rem;
+      color:var(--muted);
+      text-align:center;
+    }
+
+    .quiz{display:flex;flex-direction:column;gap:14px;margin-top:10px}
+    .btn{
+      background:var(--accent);
+      color:white;
+      padding:10px 16px;
+      border-radius:var(--radius);
+      border:0;
+      cursor:pointer;
+      font-size:1rem;
+      transition:background .2s;
+    }
+    .btn:hover{background:var(--accent-dark)}
+    .btn.ghost{
+      background:transparent;
+      color:var(--accent);
+      border:1px solid rgba(47,111,68,.3);
+    }
+
+    .sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0)}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Gorillas — Amazing Apes</h1>
+    <p>Explore species, habitats, behavior, threats, and conservation efforts for one of Earth's most iconic primates.</p>
+  </header>
+
+  <main>
+    <section class="grid">
+      <article class="card">
+        <h2>Quick Facts</h2>
+        <p class="muted large">Gorillas are the largest living primates. They primarily eat vegetation, live in family groups, and are led by a dominant male known as a silverback.</p>
+        <ul class="muted large" style="margin-top:8px;line-height:1.45">
+          <li><strong>Family:</strong> Hominidae</li>
+          <li><strong>Diet:</strong> Leaves, stems, fruit, occasional insects</li>
+          <li><strong>Social:</strong> Troops led by a silverback</li>
+          <li><strong>Lifespan:</strong> ~35–50 years in the wild</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Where They Live</h2>
+        <p class="muted large">Gorillas live in central Africa's tropical and subtropical forests. Mountain gorillas inhabit high elevations such as the Virunga Mountains, while western lowland gorillas live in swamp and lowland forests.</p>
+        
+        <div class="gallery" id="gallery">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/22/Mountain_gorilla.jpg" alt="Mountain gorilla">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Western_lowland_gorilla.jpg" alt="Western lowland gorilla">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Gorilla_bwindi.jpg" alt="Gorilla in Bwindi forest">
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Threats & Conservation</h2>
+        <p class="muted large">Gorillas face habitat loss, poaching, disease, and regional conflict. Conservation strategies include protected reserves, anti-poaching patrols, veterinary intervention, community education, and ecotourism programs.</p>
+        <p style="margin-top:10px"><strong>How you can help:</strong></p>
+        <ol class="muted large" style="margin-left:18px;line-height:1.45">
+          <li>Support trusted conservation organizations</li>
+          <li>Avoid illegal wildlife products</li>
+          <li>Share reputable information</li>
+        </ol>
+      </article>
+    </section>
+
+    <section class="card" style="margin-top:26px">
+      <h2>Quick Interactive Quiz</h2>
+      <div class="quiz" id="quiz">
+        <div>
+          <label for="q1" class="muted large">1) Which species includes the mountain gorilla?</label>
+          <select id="q1" aria-label="Question 1" class="large" style="margin-top:4px;padding:6px 8px;border-radius:8px;border:1px solid #d1d5db">
+            <option value="">Choose...</option>
+            <option value="a">Western gorilla</option>
+            <option value="b">Eastern gorilla</option>
+            <option value="c">Sumatran gorilla</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="muted large">2) True or False: Gorillas are primarily carnivores?</label>
+          <div style="margin-top:4px" class="large">
+            <label><input type="radio" name="q2" value="true"> True</label>
+            <label style="margin-left:14px"><input type="radio" name="q2" value="false"> False</label>
+          </div>
+        </div>
+
+        <div style="margin-top:6px">
+          <button class="btn" id="check">Check answers</button>
+          <button class="btn ghost" id="showAnswers">Show answers</button>
+        </div>
+
+        <p id="result" class="muted" aria-live="polite" style="margin-top:6px"></p>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:26px">
+      <h2>Sources</h2>
+      <p class="muted large">National Geographic, WWF, Smithsonian</p>
+    </section>
+
+  </main>
+
+  <footer>
+    Made for a coding class project — improved version
+  </footer>
+
+  <script>
+    // Quiz logic
+    document.getElementById('check').addEventListener('click', ()=>{
+      const a = document.getElementById('q1').value;
+      const b = document.querySelector('input[name="q2"]:checked');
+      let score = 0, total = 2;
+      if(a === 'b') score++;
+      if(b && b.value === 'false') score++;
+      document.getElementById('result').textContent = `You scored ${score} out of ${total}.`;
+    });
+
+    document.getElementById('showAnswers').addEventListener('click', ()=>{
+      alert('Answers:\n1) Eastern gorilla\n2) False — gorillas are primarily herbivores.');
+    });
+
+    // Click-to-open gallery images
+    document.getElementById('gallery').addEventListener('click', e => {
+      if(e.target.tagName === 'IMG'){
+        const src = e.target.getAttribute('src');
+        const w = window.open('', '_blank');
+        w.document.write(`<img src="${src}" style="max-width:98vw;max-height:98vh;display:block;margin:20px auto;border-radius:12px">`);
+      }
+    });
+  </script>
+</body>
+</html>
